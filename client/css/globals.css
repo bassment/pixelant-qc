@@ -1,0 +1,4 @@
+:global
+  input[type="radio"] {
+    display: none
+  }

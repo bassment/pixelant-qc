@@ -1,0 +1,8 @@
+.submitButton {
+  composes: btn btn-primary from 'basscss/css/basscss.css';
+}
+
+.radioButton {
+  composes: btn btn-outline mb1 black from 'basscss/css/basscss.css';
+  margin: 20px 5px;
+}

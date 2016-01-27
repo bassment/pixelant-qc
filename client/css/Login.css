@@ -1,10 +1,16 @@
 .googleButton {
+  composes: btn btn-primary mb1 bg-red from 'basscss/css/basscss.css';
   display: block;
   margin: 10px auto;
 }
 
 .signButton {
+  composes: btn btn-outline mb1 black from 'basscss/css/basscss.css';
   margin: 5px 5px;
+}
+
+.signOutButton {
+  composes: btn btn-outline mb1 black from 'basscss/css/basscss.css';
 }
 
 .errorMessage {

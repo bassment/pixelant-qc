@@ -1,4 +1,4 @@
-import globalStyles from '../../css/global.css';
+import shared from '../../css/shared.css';
 
 import React, {PropTypes} from 'react';
 import Helmet from 'react-helmet';
@@ -30,7 +30,7 @@ export default class Home extends React.Component {
     return (
       <div>
         <Helmet title="Automate"/>
-          <section className={globalStyles.section}>
+          <section className={shared.section}>
             <Login user={this.props.user} error={this.props.errorMessage}/>
           </section>
       </div>

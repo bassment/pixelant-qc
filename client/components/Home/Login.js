@@ -32,7 +32,7 @@ export default class Login extends React.Component {
       return (
         <div className="row">
           <p>Hi {this.props.user.username || this.props.user.google.displayName}!</p>
-          <p><button onClick={this.signout}>Sign Out</button></p>
+          <p><button className={styles.signOutButton} onClick={this.signout}>Sign Out</button></p>
         </div>
       );
     }

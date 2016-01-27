@@ -1,4 +1,4 @@
-import styles from '../../css/global.css';
+import shared from '../../css/shared.css';
 
 import React, {PropTypes} from 'react';
 import Helmet from 'react-helmet';
@@ -29,7 +29,7 @@ export default class Page extends React.Component {
     return (
       <div>
         <Helmet title="Count"/>
-          <section className={styles.section}>
+          <section className={shared.section}>
             <Counter count={this.props.counter}/>
           </section>
       </div>
