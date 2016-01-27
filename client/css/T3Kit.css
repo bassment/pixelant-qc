@@ -6,3 +6,8 @@
   composes: btn btn-outline mb1 black from 'basscss/css/basscss.css';
   margin: 20px 5px;
 }
+
+.activeRadioButton {
+  composes: btn btn-primary mb1 black bg-aqua from 'basscss/css/basscss.css';
+  margin: 20px 5px;
+}
