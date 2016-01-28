@@ -8,11 +8,11 @@ import T3Kit from './components/T3Kit/T3Kit';
 
 import UserStore from './stores/UserStore';
 
-function requireAuth(nextState, replace) {
+const requireAuth = (nextState, replace) => {
   const state = UserStore.getState();
 
   if (!state.user) replace('/');
-}
+};
 
 const routes = (
   <Route component={App}>

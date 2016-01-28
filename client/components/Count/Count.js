@@ -13,10 +13,6 @@ export default class Page extends React.Component {
     counter: PropTypes.number.isRequired
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   static getStores() {
     return [CountStore];
   }
