@@ -12,7 +12,8 @@ import connectToStores from 'alt-utils/lib/connectToStores';
 @connectToStores
 export default class Page extends React.Component {
   static propTypes = {
-    activeRadioButton: PropTypes.string
+    activeRadioButton: PropTypes.string,
+    activeStep: PropTypes.string
   };
 
   static getStores() {
@@ -23,14 +24,15 @@ export default class Page extends React.Component {
     return SurveyStore.getState();
   }
 
-  setActiveRadio = evt => {
-    SurveyActions.setActiveRadio(evt.target.value);
-  };
+  setActiveRadio = evt => SurveyActions.setActiveRadio(evt.target.value);
+  sendSurveyData = () => SurveyActions.sendSurveyData();
+  backOneStep = () => SurveyActions.backOneStep();
 
   render() {
-    return (
+    let step = null;
+
+    const firstStepForm = (
       <div>
-        <h1>T3Kit</h1>
         <h2>Which type of test do you prefer?</h2>
         <form>
           <RadioButton type="layout"
@@ -43,7 +45,35 @@ export default class Page extends React.Component {
             active={this.props.activeRadioButton === 'both'}
             onClick={this.setActiveRadio}/>
         </form>
-        <button className={styles.submitButton}>Next</button>
+        <button
+          className={styles.submitButton}
+          onClick={this.sendSurveyData}>Test</button>
+      </div>
+    );
+
+    const finalStepForm = (
+      <div>
+        <h2>The reports was sent on your email!</h2>
+        <button className={styles.button} onClick={this.backOneStep}>Back</button>
+      </div>
+    );
+
+    switch (this.props.activeStep) {
+    case 'firstStep': {
+      step = firstStepForm;
+      break;
+    }
+    case 'finalStep': {
+      step = finalStepForm;
+      break;
+    }
+    default: {
+      break;
+    }}
+
+    return (
+      <div>
+        {step}
       </div>
     );
   }

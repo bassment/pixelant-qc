@@ -1,3 +1,7 @@
+.button {
+  composes: btn btn-primary from 'basscss/css/basscss.css';
+}
+
 .submitButton {
   composes: btn btn-primary from 'basscss/css/basscss.css';
 }
