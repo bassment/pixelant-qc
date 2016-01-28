@@ -30,6 +30,7 @@ if (isDeveloping) {
   app.use(webpackHotMiddleware(compiler));
   app.use(express.static('public'));
   app.use(require('./server/routes/accounts'));
+  app.use(require('./server/routes/tests'));
   app.get('*', function response(req, res) {
     res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
     res.end();
@@ -38,6 +39,7 @@ if (isDeveloping) {
   app.use(express.static(__dirname + '/dist'));
   app.use(express.static('public'));
   app.use(require('./server/routes/accounts'));
+  app.use(require('./server/routes/tests'));
   app.get('*', function response(req, res) {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
   });

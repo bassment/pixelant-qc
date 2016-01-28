@@ -1,0 +1,33 @@
+{
+  "tests" : [ {
+    "name" : "Home Page on Win-Chrome 46",
+    "startedAt" : 1453999887653,
+    "endedAt" : 1453999918178,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "1-home-page-on-win-chrome-46",
+    "groups" : [ "home-desktop" ],
+    "failed" : false,
+    "duration" : 30525
+  }, {
+    "name" : "Home Page on Mac-Chrome 46",
+    "startedAt" : 1453999887653,
+    "endedAt" : 1453999920067,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 1,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 1
+    },
+    "testId" : "2-home-page-on-mac-chrome-46",
+    "groups" : [ "home-desktop" ],
+    "failed" : false,
+    "duration" : 32414
+  } ]
+}

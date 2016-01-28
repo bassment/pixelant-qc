@@ -15,18 +15,19 @@ export default class Page extends React.Component {
     activeRadioButton: PropTypes.string,
     activeStep: PropTypes.string
   };
-
   static getStores() {
     return [SurveyStore];
   }
-
   static getPropsFromStores() {
     return SurveyStore.getState();
   }
 
   setActiveRadio = evt => SurveyActions.setActiveRadio(evt.target.value);
-  sendSurveyData = () => SurveyActions.sendSurveyData();
   backOneStep = () => SurveyActions.backOneStep();
+
+  sendSurveyData = () => {
+    SurveyActions.sendSurveyData(this.props.activeRadioButton);
+  };
 
   render() {
     let step = null;
@@ -68,6 +69,7 @@ export default class Page extends React.Component {
       break;
     }
     default: {
+      step = null;
       break;
     }}
 

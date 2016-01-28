@@ -57,6 +57,7 @@
     "html-webpack-plugin": "^1.6.1",
     "jscs": "^2.1.1",
     "json-loader": "^0.5.3",
+    "nodemailer": "^2.0.0",
     "postcss-loader": "^0.6.0",
     "react-addons-test-utils": "^0.14.3",
     "react-transform-catch-errors": "^1.0.1",

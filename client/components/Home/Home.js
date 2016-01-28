@@ -13,11 +13,9 @@ export default class Home extends React.Component {
     user: PropTypes.object,
     errorMessage: PropTypes.string
   };
-
   static getStores() {
     return [UserStore];
   }
-
   static getPropsFromStores() {
     return UserStore.getState();
   }

@@ -1,4 +1,5 @@
 import alt from '../alt/alt';
+import {postSurveyData} from '../utils/RestAPI';
 
 import SurveyActions from '../actions/SurveyActions';
 import { decorate, bind } from 'alt-utils/lib/decorators';
@@ -18,7 +19,8 @@ class SurveyStore {
   }
 
   @bind(SurveyActions.sendSurveyData)
-  sendSurveyData() {
+  sendSurveyData(data) {
+    postSurveyData(data);
     this.setState({activeStep: 'finalStep'});
   }
 
