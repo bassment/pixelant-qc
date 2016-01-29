@@ -29,31 +29,84 @@ var galenMailOptions = {
 router.use(require('body-parser').json());
 
 router.post('/api/test', function(req, res) {
-  var data = req.body.data
+  var data = req.body.data;
   console.log(data);
 
-  // var galen = 'galen test saucelabs-configuration.test ' +
-  //             '--htmlreport /Users/admin/React/automate/public/reports/galen ' +
-  //             '--groups home-desktop --parallel-tests 8 ';
-  //
-  // var nightwatch = 'nightwatch -t tests/Home/search.js -e default,mchrome ' +
-  //                 '-c nightwatch-saucelabs.json ' +
-  //                 '--reporter ./scripts/html-saucelabs-reporter.js';
-  //
-  // switch (req.body.data) {
-  //   case 'functional': {
-  //     galen = null;
-  //     break;
-  //   }
-  //   case 'layout': {
-  //     nightwatch = null;
-  //     break;
-  //   }
-  //   default: {
-  //     break;
-  //   }
-  // }
-  //
+  var galen = 'galen test saucelabs-configuration.test ' +
+              '--htmlreport /Users/admin/React/automate/public/reports/galen ' +
+              '--parallel-tests 8 ';
+
+  var nightwatch = 'nightwatch ' +
+                  '-c nightwatch-saucelabs.json ' +
+                  '--reporter ./scripts/html-saucelabs-reporter.js ';
+
+  switch (data.type) {
+    case 'functional': {
+      galen = null;
+      break;
+    }
+    case 'layout': {
+      nightwatch = null;
+      break;
+    }
+    default: {
+      break;
+    }
+  }
+
+  if (galen && !nightwatch) {
+    if (data.section === 'top header' && data.browser === 'chrome') {
+      galen += '--groups logo-section-chrome';
+    } else if (data.section === 'meta menu' && data.browser === 'chrome') {
+      galen += '--groups meta-menu-chrome';
+    } else if (data.section === 'top header' && data.browser === 'firefox') {
+      galen += '--groups logo-section-firefox';
+    } else if (data.section === 'meta menu' && data.browser === 'firefox') {
+      galen += '--groups meta-menu-firefox';
+    } else if (data.section === 'meta menu' && data.browser === 'both') {
+      galen += '--groups meta-menu-desktop';
+    } else if (data.section === 'top header' && data.browser === 'both') {
+      galen += '--groups logo-section-desktop';
+    }
+  } else if (nightwatch && !galen) {
+    if (data.section === 'top header' && data.browser === 'chrome') {
+      nightwatch += '-t tests/Home/socialLinks.js -e default,mchrome';
+    } else if (data.section === 'meta menu' && data.browser === 'chrome') {
+      nightwatch += '-t tests/Home/metaMenuLinks.js -e default,mchrome';
+    } else if (data.section === 'top header' && data.browser === 'firefox') {
+      nightwatch += '-t tests/Home/socialLinks.js -e mfirefox,wfirefox';
+    } else if (data.section === 'meta menu' && data.browser === 'firefox') {
+      nightwatch += '-t tests/Home/metaMenuLinks.js -e mfirefox,wfirefox';
+    } else if (data.section === 'meta menu' && data.browser === 'both') {
+      nightwatch += '-t tests/Home/metaMenuLinks.js -e default,mchrome,mfirefox,wfirefox';
+    } else if (data.section === 'top header' && data.browser === 'both') {
+      nightwatch += '-t tests/Home/socialLinks.js -e default,mchrome,mfirefox,wfirefox';
+    }
+  } else if (nightwatch && galen) {
+    if (data.section === 'top header' && data.browser === 'chrome') {
+      galen += '--groups logo-section-chrome';
+      nightwatch += '-t tests/Home/socialLinks.js -e default,mchrome';
+    } else if (data.section === 'meta menu' && data.browser === 'chrome') {
+      galen += '--groups meta-menu-chrome';
+      nightwatch += '-t tests/Home/metaMenuLinks.js -e default,mchrome';
+    } else if (data.section === 'top header' && data.browser === 'firefox') {
+      galen += '--groups logo-section-firefox';
+      nightwatch += '-t tests/Home/socialLinks.js -e mfirefox,wfirefox';
+    } else if (data.section === 'meta menu' && data.browser === 'firefox') {
+      galen += '--groups meta-menu-firefox';
+      nightwatch += '-t tests/Home/metaMenuLinks.js -e mfirefox,wfirefox';
+    } else if (data.section === 'meta menu' && data.browser === 'both') {
+      galen += '--groups meta-menu-desktop';
+      nightwatch += '-t tests/Home/metaMenuLinks.js -e default,mchrome,mfirefox,wfirefox';
+    } else if (data.section === 'top header' && data.browser === 'both') {
+      galen += '--groups logo-section-desktop';
+      nightwatch += '-t tests/Home/socialLinks.js -e default,mchrome,mfirefox,wfirefox';
+    }
+  }
+
+  console.log(galen);
+  console.log(nightwatch);
+
   // if (nightwatch) {
   //   console.log(nightwatch);
   //
@@ -93,8 +146,8 @@ router.post('/api/test', function(req, res) {
   //     });
   //   });
   // }
-  //
-  // res.json({nightwatch, galen});
+
+  res.json({nightwatch, galen});
 });
 
 module.exports = router;
