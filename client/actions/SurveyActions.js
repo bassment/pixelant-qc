@@ -7,7 +7,8 @@ class SurveyActions {
       'setType',
       'setSection',
       'setBrowser',
-      'sendSurveyData'
+      'sendSurveyData',
+      'testAgain'
     );
   }
 }

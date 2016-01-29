@@ -17,6 +17,18 @@ class SurveyStore {
     };
   }
 
+  @bind(SurveyActions.testAgain)
+  testAgain() {
+    this.setState({
+      activeProject: 't3kit',
+      activeType: 'both',
+      activeSection: 'top header',
+      activeBrowser: 'both'
+    });
+
+    browserHistory.push('/survey');
+  }
+
   @bind(SurveyActions.setProject)
   setProject(value) {
     this.setState({activeProject: value});

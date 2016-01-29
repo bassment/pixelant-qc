@@ -15,7 +15,7 @@ var nightwatchMailOptions = {
   to: 'anton.perebyinis@pixelant.se',
   subject: 'Nightwatch Tests',
   html: '<a href="http://localhost:3000/reports/nightwatch/report.html">' +
-        'Click </a>on Your Function tests ;)'
+        'Your Functional Tests</a>'
 };
 
 var galenMailOptions = {
@@ -23,7 +23,7 @@ var galenMailOptions = {
   to: 'anton.perebyinis@pixelant.se',
   subject: 'Galen Tests',
   html: '<a href="http://localhost:3000/reports/galen/report.html">' +
-        'Click </a>on Your Layout tests ;)'
+        'Your Layout Tests</a>'
 };
 
 router.use(require('body-parser').json());
@@ -31,6 +31,9 @@ router.use(require('body-parser').json());
 router.post('/api/test', function(req, res) {
   var data = req.body.data;
   console.log(data);
+
+  galenMailOptions.to = data.email;
+  nightwatchMailOptions.to = data.email;
 
   var galen = 'galen test saucelabs-configuration.test ' +
               '--htmlreport /Users/admin/React/automate/public/reports/galen ' +
@@ -104,48 +107,45 @@ router.post('/api/test', function(req, res) {
     }
   }
 
-  console.log(galen);
-  console.log(nightwatch);
+  if (nightwatch) {
+    console.log(nightwatch);
 
-  // if (nightwatch) {
-  //   console.log(nightwatch);
-  //
-  //   exec('rm -rf /Users/admin/React/automate/public/reports/nightwatch/*');
-  //   process.chdir('/Users/admin/Tests/project-template/Nightwatch');
-  //
-  //   exec(nightwatch, function(error, stdout, stderr) {
-  //     console.log(stdout);
-  //     console.log(stderr);
-  //
-  //     if (error !== null) console.log('exec error: ' + error);
-  //     transporter.sendMail(nightwatchMailOptions, function(error, info) {
-  //       if (error) {
-  //         return console.log(error);
-  //       }
-  //       console.log('Message sent: ' + info.response);
-  //     });
-  //   });
-  // }
-  //
-  // if (galen) {
-  //   console.log(galen);
-  //
-  //   exec('rm -rf /Users/admin/React/automate/public/reports/galen/*');
-  //   process.chdir('/Users/admin/Tests/project-template/Galen');
-  //
-  //   exec(galen, function(error, stdout, stderr) {
-  //     console.log(stdout);
-  //     console.log(stderr);
-  //
-  //     if (error !== null) console.log('exec error: ' + error);
-  //     transporter.sendMail(galenMailOptions, function(error, info) {
-  //       if (error) {
-  //         return console.log(error);
-  //       }
-  //       console.log('Message sent: ' + info.response);
-  //     });
-  //   });
-  // }
+    exec('rm -rf /Users/admin/React/automate/public/reports/nightwatch/*');
+    process.chdir('/Users/admin/Tests/t3kit/Nightwatch');
+
+    exec(nightwatch, function(error, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+
+      if (error !== null) console.log('exec error: ' + error);
+      transporter.sendMail(nightwatchMailOptions, function(error, info) {
+        if (error) {
+          return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+      });
+    });
+  }
+
+  if (galen) {
+    console.log(galen);
+
+    exec('rm -rf /Users/admin/React/automate/public/reports/galen/*');
+    process.chdir('/Users/admin/Tests/t3kit/Galen');
+
+    exec(galen, function(error, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+
+      if (error !== null) console.log('exec error: ' + error);
+      transporter.sendMail(galenMailOptions, function(error, info) {
+        if (error) {
+          return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+      });
+    });
+  }
 
   res.json({nightwatch, galen});
 });
