@@ -15,3 +15,8 @@
   composes: btn btn-primary mb1 black bg-aqua from 'basscss/css/basscss.css';
   margin: 20px 5px;
 }
+
+.testButton {
+  composes: btn btn-primary mb1 bg-olive from 'basscss/css/basscss.css';
+  margin: 20px 5px;
+}

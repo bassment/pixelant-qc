@@ -3,9 +3,11 @@ import alt from '../alt/alt';
 class SurveyActions {
   constructor() {
     this.generateActions(
-      'setActiveRadio',
-      'sendSurveyData',
-      'backOneStep'
+      'setProject',
+      'setType',
+      'setSection',
+      'setBrowser',
+      'sendSurveyData'
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import styles from '../../css/T3Kit.css';
+import styles from '../../css/Survey.css';
 
 const RadioButton = props => {
   const capitalize = word =>
