@@ -38,7 +38,7 @@ router.post('/api/test', function(req, res) {
   nightwatchMailOptions.to = data.email;
 
   var galen = 'galen test saucelabs-configuration.test ' +
-              '--htmlreport /home/codterpin/automate/public/reports/galen ' +
+              '--htmlreport /Users/admin/React/automate/public/reports/galen ' +
               '--parallel-tests 8 ';
 
   var nightwatch = 'nightwatch ' +
@@ -112,14 +112,14 @@ router.post('/api/test', function(req, res) {
   if (nightwatch) {
     console.log(nightwatch);
 
-    exec('rm -rf /home/codterpin/automate/public/reports/nightwatch/*');
-    process.chdir('/home/codterpin/t3kit/Nightwatch');
+    exec('rm -rf /Users/admin/React/automate/public/reports/nightwatch/*');
+    process.chdir('/Users/admin/Tests/t3kit/Nightwatch');
 
     exec(nightwatch, function(error, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);
 
-      var html = fs.readFileSync('/home/codterpin/automate/public/reports/nightwatch/report.html', 'utf8');
+      var html = fs.readFileSync('/Users/admin/React/automate/public/reports/nightwatch/report.html', 'utf8');
 
       nightwatchMailOptions.html = '<p><a href="http://pixelant.space/reports/nightwatch/report.html">' +
             'Your Functional Tests</a></p>' +
@@ -139,8 +139,8 @@ router.post('/api/test', function(req, res) {
   if (galen) {
     console.log(galen);
 
-    exec('rm -rf /home/codterpin/automate/public/reports/galen/*');
-    process.chdir('/home/codterpin/t3kit/Galen');
+    exec('rm -rf /Users/admin/React/automate/public/reports/galen/*');
+    process.chdir('/Users/admin/Tests/t3kit/Galen');
 
     exec(galen, function(error, stdout, stderr) {
       console.log(stdout);
