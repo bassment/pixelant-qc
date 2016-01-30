@@ -1,3 +1,6 @@
+var findFromString = require('../utils/findJobID');
+var fs = require('fs');
+var path = require('path');
 var exec = require('child_process').exec;
 var router = require('express').Router();
 var nodemailer = require('nodemailer');
@@ -29,6 +32,10 @@ var galenMailOptions = {
 router.use(require('body-parser').json());
 
 router.post('/api/test', function(req, res) {
+  var html = fs.readFileSync(
+    path.resolve('public/reports/nightwatch', 'report.html'
+  ), 'utf8');
+  console.log(findFromString.findJobID(html));
   var data = req.body.data;
   console.log(data);
 
@@ -116,6 +123,15 @@ router.post('/api/test', function(req, res) {
     exec(nightwatch, function(error, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);
+
+      var html = fs.readFileSync(
+        path.resolve('public/reports/nightwatch', 'report.html'
+      ), 'utf8');
+
+      nightwatchMailOptions.html = '<p><a href="http://pixelant.space/reports/nightwatch/report.html">' +
+            'Your Functional Tests</a></p>' +
+            '<p><a href="' + 'https://saucelabs.com/beta/tests/' + findFromString.findJobID(html) + '">' +
+                  'Check Your test in Saucelabs Dashboard</a></p>'
 
       if (error !== null) console.log('exec error: ' + error);
       transporter.sendMail(nightwatchMailOptions, function(error, info) {
