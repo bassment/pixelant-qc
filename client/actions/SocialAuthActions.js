@@ -9,7 +9,7 @@ class SocialAuthActions {
       this.firebaseRef.authWithOAuthPopup('google', (error, user) => {
         if (error) { return; }
         dispatch(user);
-        browserHistory.push('/survey');
+        browserHistory.push('/');
       });
     };
   }

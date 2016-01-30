@@ -7,7 +7,7 @@ class UserActions {
     return (dispatch) => {
       API.signin(username, password).then(response => {
         dispatch(response);
-        browserHistory.push('/survey');
+        browserHistory.push('/');
       });
     };
   }
@@ -16,7 +16,7 @@ class UserActions {
     return (dispatch) => {
       API.signup(username, password).then(response => {
         dispatch(response);
-        browserHistory.push('/survey');
+        browserHistory.push('/');
       });
     };
   }

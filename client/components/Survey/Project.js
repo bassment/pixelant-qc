@@ -29,7 +29,7 @@ export default class Page extends React.Component {
   render() {
     return (
       <div>
-        <Helmet title="Survey"/>
+        <Helmet title="Project"/>
         <section className={shared.section}>
           <h2>What project do you want to test?</h2>
           <form>
