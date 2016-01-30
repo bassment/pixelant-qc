@@ -17,7 +17,7 @@
       }
     },
     "build:start": {
-      "command": "node server",
+      "command": "PORT=3000 node server",
       "env": {
         "NODE_ENV": "production"
       }
