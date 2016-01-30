@@ -1,10 +1,11 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
 import App from './components/App';
 import Home from './components/Home/Home';
+import Login from './components/Login/Login';
 import Count from './components/Count/Count';
-import Survey from './components/Survey/Survey';
+import Project from './components/Survey/Project';
 import Type from './components/Survey/Type';
 import Section from './components/Survey/Section';
 import Browser from './components/Survey/Browser';
@@ -16,19 +17,23 @@ import UserStore from './stores/UserStore';
 const requireAuth = (nextState, replace) => {
   const state = UserStore.getState();
 
-  if (!state.user) replace('/');
+  if (!state.user) replace('/login');
 };
 
 const routes = (
   <Route component={App}>
-    <Route path="/" component={Home} />
-    <Route path="/count" component={Count} onEnter={requireAuth} />
-    <Route path="/survey" component={Survey} onEnter={requireAuth} />
-    <Route path="/survey/type" component={Type} onEnter={requireAuth} />
-    <Route path="/survey/section" component={Section} onEnter={requireAuth} />
-    <Route path="/survey/browser" component={Browser} onEnter={requireAuth} />
-    <Route path="/survey/email" component={Email} onEnter={requireAuth} />
-    <Route path="/survey/reports" component={Report} onEnter={requireAuth} />
+    <Route path="/" component={Home} onEnter={requireAuth} />
+    <Route path="/login" component={Login} />
+    <Route path="/count" component={Count} />
+    <Route path="/survey" onEnter={requireAuth}>
+      <IndexRoute component={Project} />
+      <Route path="project" component={Project} />
+      <Route path="type" component={Type} />
+      <Route path="section" component={Section} />
+      <Route path="browser" component={Browser} />
+      <Route path="email" component={Email} />
+      <Route path="reports" component={Report} />
+    </Route>
   </Route>
 );
 

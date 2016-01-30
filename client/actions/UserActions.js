@@ -25,7 +25,7 @@ class UserActions {
     return (dispatch) => {
       API.signout().then(() => {
         dispatch();
-        browserHistory.push('/');
+        browserHistory.push('/login');
       });
     };
   }
