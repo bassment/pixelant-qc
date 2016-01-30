@@ -14,7 +14,7 @@ var nightwatchMailOptions = {
   from: 'Anton Perebyinis <anton.perebyinis@gmail.com>',
   to: 'anton.perebyinis@pixelant.se',
   subject: 'Nightwatch Tests',
-  html: '<a href="http://localhost:3000/reports/nightwatch/report.html">' +
+  html: '<a href="http://pixelant.space/reports/nightwatch/report.html">' +
         'Your Functional Tests</a>'
 };
 
@@ -22,7 +22,7 @@ var galenMailOptions = {
   from: 'Anton Perebyinis <anton.perebyinis@gmail.com>',
   to: 'anton.perebyinis@pixelant.se',
   subject: 'Galen Tests',
-  html: '<a href="http://localhost:3000/reports/galen/report.html">' +
+  html: '<a href="http://pixelant.space/reports/galen/report.html">' +
         'Your Layout Tests</a>'
 };
 
@@ -36,7 +36,7 @@ router.post('/api/test', function(req, res) {
   nightwatchMailOptions.to = data.email;
 
   var galen = 'galen test saucelabs-configuration.test ' +
-              '--htmlreport /Users/admin/React/automate/public/reports/galen ' +
+              '--htmlreport /home/codterpin/automate/public/reports/galen ' +
               '--parallel-tests 8 ';
 
   var nightwatch = 'nightwatch ' +
@@ -110,8 +110,8 @@ router.post('/api/test', function(req, res) {
   if (nightwatch) {
     console.log(nightwatch);
 
-    exec('rm -rf /Users/admin/React/automate/public/reports/nightwatch/*');
-    process.chdir('/Users/admin/Tests/t3kit/Nightwatch');
+    exec('rm -rf /home/codterpin/automate/public/reports/nightwatch/*');
+    process.chdir('/home/codterpin/t3kit/Nightwatch');
 
     exec(nightwatch, function(error, stdout, stderr) {
       console.log(stdout);
@@ -130,8 +130,8 @@ router.post('/api/test', function(req, res) {
   if (galen) {
     console.log(galen);
 
-    exec('rm -rf /Users/admin/React/automate/public/reports/galen/*');
-    process.chdir('/Users/admin/Tests/t3kit/Galen');
+    exec('rm -rf /home/codterpin/automate/public/reports/galen/*');
+    process.chdir('/home/codterpin/t3kit/Galen');
 
     exec(galen, function(error, stdout, stderr) {
       console.log(stdout);
