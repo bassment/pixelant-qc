@@ -16,7 +16,7 @@ var nightwatchMailOptions = {
   from: 'Anton Perebyinis <anton.perebyinis@gmail.com>',
   to: 'anton.perebyinis@pixelant.se',
   subject: 'Nightwatch Tests',
-  html: '<a href="https://bassment-automate.herokuapp.com/reports/nightwatch/report.html">' +
+  html: '<a href="http://pixelant.space/reports/nightwatch/report.html">' +
         'Your Functional Tests</a>'
 };
 
@@ -24,7 +24,7 @@ var galenMailOptions = {
   from: 'Anton Perebyinis <anton.perebyinis@gmail.com>',
   to: 'anton.perebyinis@pixelant.se',
   subject: 'Galen Tests',
-  html: '<a href="https://bassment-automate.herokuapp.com/reports/galen/report.html">' +
+  html: '<a href="http://pixelant.space/reports/galen/report.html">' +
         'Your Layout Tests</a>'
 };
 
@@ -121,7 +121,7 @@ router.post('/api/test', function(req, res) {
 
       var html = fs.readFileSync('/Users/admin/React/automate/public/reports/nightwatch/report.html', 'utf8');
 
-      nightwatchMailOptions.html = '<p><a href="https://bassment-automate.herokuapp.com/reports/nightwatch/report.html">' +
+      nightwatchMailOptions.html = '<p><a href="http://pixelant.space/reports/nightwatch/report.html">' +
             'Your Functional Tests</a></p>' +
             '<p><a href="' + 'https://saucelabs.com/beta/tests/' + findFromString.findJobID(html) + '">' +
                   'Check Your test in Saucelabs Dashboard</a></p>'
