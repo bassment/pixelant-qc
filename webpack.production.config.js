@@ -11,7 +11,7 @@ module.exports = {
     path.join(__dirname, 'client/main.js')
   ],
   output: {
-    path: path.join(__dirname, '/dist/'),
+    path: path.join(__dirname, '/public/'),
     filename: '[name]-[hash].min.js'
   },
   plugins: [
