@@ -1,6 +1,6 @@
 import alt from '../alt/alt';
 import Firebase from 'firebase';
-import { browserHistory } from 'react-router';
+import { browserHistory } from '../main';
 
 class SocialAuthActions {
   login() {

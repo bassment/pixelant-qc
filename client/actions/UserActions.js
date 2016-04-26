@@ -1,6 +1,6 @@
 import alt from '../alt/alt';
 import * as API from '../utils/RestAPI';
-import { browserHistory } from 'react-router';
+import { browserHistory } from '../main';
 
 class UserActions {
   signin(username, password) {

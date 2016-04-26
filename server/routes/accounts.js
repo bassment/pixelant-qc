@@ -1,7 +1,7 @@
 var Firebase = require('firebase');
 var crypto = require('crypto');
 
-var firebase = new Firebase('https://automat.firebaseio.com/');
+var firebase = new Firebase(process.env.FIREBASE_URL);
 var users = firebase.child('users');
 
 function hash(password) {
